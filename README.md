@@ -1,16 +1,18 @@
 /*PIZZA SALES SQL QUERIES
+
 We have been hired by a pizza restaurant to use data-driven approaches to improve their Operations, Sales, Products and Revenue.
 To gain insights into the pizza sales, we imported their raw data into a Pizza Database on MS SQL Server to generate our pizza 
 sales table. The dataset contains a year’s (2015) worth of sales.
 We used SQL queries to examine crucial metrics within our pizza sales data, enabling us to understand the business performance better. 
-Specifically, our focus was on calculating the following metrics: Total Revenue, Average Order Value, Total Pizzas Sold, Total Orders, Average Pizzas per Order, alongside delving into 
-other potential insights within the dataset. */
+Specifically, our focus was on calculating the following metrics: Total Revenue, Average Order Value, Total Pizzas Sold, Total Orders, 
+Average Pizzas per Order, alongside delving into other potential insights within the dataset. */
 
 /*
 A. KPI’s
+
 1. Total Revenue:
 This SQL query calculates the total revenue from pizza sales.
-*/
+*/                
 SELECT 
     SUM(total_price) AS Total_Revenue    -- Selects the sum of the total_price column and aliases it as Total_Revenue
 FROM 
@@ -20,25 +22,31 @@ FROM
 2. Average Order Value
 This SQL query calculates the average order value from pizza sales. */
 SELECT 
-    (SUM(total_price) / COUNT(DISTINCT order_id)) AS Avg_order_Value  -- Calculates the average order value by dividing the sum of total_price by the count of distinct order_id, and aliases it as Avg_order_Value
+    (SUM(total_price) / COUNT(DISTINCT order_id)) AS Avg_order_Value  -- Calculates the average order value by 
+    dividing the sum of total_price by the count of distinct order_id, and aliases it as Avg_order_Value
 FROM 
     pizza_sales;  -- Specifies the table from which to retrieve data, in this case, pizza_sales
+
 
 /*
 3. Total Pizzas Sold
 This SQL query calculates the total number of pizzas sold from the pizza sales data. */
 SELECT 
-    SUM(quantity) AS Total_pizza_sold   -- Calculates the sum of the quantity column, representing the total number of pizzas sold, and aliases it as Total_pizza_sold
+    SUM(quantity) AS Total_pizza_sold   -- Calculates the sum of the quantity column, representing 
+    the total number of pizzas sold, and aliases it as Total_pizza_sold
 FROM 
     pizza_sales;  -- Specifies the table from which to retrieve data, in this case, pizza_sales
+    
 
 /*
 4. Total Orders
 This SQL query calculates the total number of distinct orders from the pizza sales data. */
 SELECT 
-    COUNT(DISTINCT order_id) AS Total_Orders   -- Counts the distinct order_id values, representing the total number of orders, and aliases it as Total_Orders
+    COUNT(DISTINCT order_id) AS Total_Orders   -- Counts the distinct order_id values, 
+    representing the total number of orders, and aliases it as Total_Orders
 FROM 
     pizza_sales;  -- Specifies the table from which to retrieve data, in this case, pizza_sales
+    
 
 /*
 5. Average Pizzas Per Order
@@ -52,6 +60,7 @@ AS Avg_Pizzas_per_order  -- Aliases the result as Avg_Pizzas_per_order
 FROM
     pizza_sales;   -- Specifies the table from which to retrieve data, in this case, pizza_sales
 
+
 /*
 B. Daily Trend for Total Orders
 This SQL query retrieves the count of distinct orders for each day of the week from the pizza sales data. */
@@ -63,6 +72,7 @@ FROM
 GROUP BY 
     DATENAME(DW, order_date);  -- Groups the results by the day of the week extracted from the order_date column
 
+
 /*
 C. Monthly Trend for Orders
 This SQL query retrieves the count of distinct orders for each month from the pizza sales data. */
@@ -73,6 +83,7 @@ FROM
     pizza_sales  -- Specifies the table from which to retrieve data, in this case, pizza_sales
 GROUP BY 
     DATENAME(MONTH, order_date);  -- Groups the results by the month extracted from the order_date column
+
 
 /*
 D. % of Sales by Pizza Category
@@ -90,6 +101,7 @@ FROM
     pizza_sales  -- Specifies the table from which to retrieve data, in this case, pizza_sales
 GROUP BY 
     pizza_category;  -- Groups the results by the pizza category
+
 
 /*
 E. % of Sales by Pizza Size
@@ -110,6 +122,7 @@ GROUP BY
 ORDER BY 
     pizza_size;  -- Orders the results by pizza size
 
+
 /*
 F. Total Pizzas Sold by Pizza Category
 This SQL query calculates the total quantity sold for each pizza category for the month of February from the pizza sales data. */
@@ -125,6 +138,7 @@ GROUP BY
 ORDER BY 
     Total_Quantity_Sold DESC;  -- Orders the results by total quantity sold in descending order
 
+
 /*
 G. Top 5 Pizzas by Revenue
 This SQL query retrieves the top 5 pizza names based on total revenue from the pizza sales data. */
@@ -137,6 +151,7 @@ GROUP BY
     pizza_name  -- Groups the results by pizza name
 ORDER BY 
     Total_Revenue DESC;  -- Orders the results by total revenue in descending order
+
 
 /*
 H. Bottom 5 Pizzas by Revenue
@@ -151,6 +166,7 @@ GROUP BY
 ORDER BY 
     Total_Revenue ASC;  -- Orders the results by total revenue in ascending order
 
+
 /*
 I. Top 5 Pizzas by Quantity
 This SQL query retrieves the top 5 pizza names based on the total quantity sold from the pizza sales data. */
@@ -163,6 +179,7 @@ GROUP BY
     pizza_name  -- Groups the results by pizza name
 ORDER BY 
     Total_Pizza_Sold DESC;  -- Orders the results by total quantity sold in descending order
+
 
 /*
 J. Bottom 5 Pizzas by Quantity
@@ -177,6 +194,7 @@ GROUP BY
 ORDER BY 
     Total_Pizza_Sold ASC;  -- Orders the results by total quantity sold in ascending order
 
+
 /*
 K. Top 5 Pizzas by Total Orders
 This SQL query retrieves the top 5 pizza names based on the total number of distinct orders they appeared in from the pizza sales data. */
@@ -190,6 +208,7 @@ GROUP BY
 ORDER BY 
     Total_Orders DESC;  -- Orders the results by total number of distinct orders in descending order
 
+
 /*
 L. Bottom 5 Pizzas by Total Orders
 This SQL query retrieves the bottom 5 pizza names based on the total number of distinct orders they appeared in from the pizza sales data. */
@@ -202,6 +221,7 @@ GROUP BY
     pizza_name  -- Groups the results by pizza name
 ORDER BY 
     Total_Orders ASC;  -- Orders the results by total number of distinct orders in ascending order
+
 
 /*
 NOTE
